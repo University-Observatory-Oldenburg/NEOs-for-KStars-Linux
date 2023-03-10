@@ -23,3 +23,4 @@ The script imports the current NEOs on the ESA Priority list, the MPC NEA Observ
 - IMPORTANT: Use the Pre_Capture_NEO.py script before every Capture as Pre-Capture script in Ekos. The coordinates of the object will be updated and the mount is corrected. The dome needs to be slewed again after that procedure. This will correct for the movement of the object according to latest data from MPC, which is not implemented in KStars.
 
 # Description
+TBD
