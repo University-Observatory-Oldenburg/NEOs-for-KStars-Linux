@@ -1,5 +1,5 @@
 # NEOs-for-KStars-Linux
-Import Scripts to use current NEO and other Minor Planet data (from MPC, Confirmation Page, ESA, etc.) in KStars for Linux Systems
+Import Scripts to use current NEO and other Minor Planet data (from MPC, Confirmation Page, ESA, etc.) in KStars for Linux Systems.
 
 # Short Description
 The script imports the current NEOs on the ESA Priority list, the MPC NEA Observation Aid, the MPC Confirmation Page and some own additional objects (e.g. from a input prompt). It checks all objects for observability in the following night (magnitude, altitude, uncertainty, etc.). The final list of observable objets is put into KStars (asteroid file) and the Wishlist in order to quickly import the objects into the Scheduler. It is necessary to run this script before starting KStars. An Internet connection is also needed.
