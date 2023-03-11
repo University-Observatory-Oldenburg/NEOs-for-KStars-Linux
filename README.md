@@ -31,4 +31,4 @@ TBD
 - Input Prompt for Parameters
 
 ## References
-Hoffmann T, Gehlen M, Plaggenborg T, Drolshagen G, Ott T, Kunz J, Santana-Ros T, Gedek M, Reszelewski R, Żołnowski M and Poppe B (2022) Robotic observation pipeline for small bodies in the solar system based on open-source software and commercially available telescope hardware. Front. Astron. Space Sci. 9:895732. doi: 10.3389/fspas.2022.895732
+- Hoffmann T, Gehlen M, Plaggenborg T, Drolshagen G, Ott T, Kunz J, Santana-Ros T, Gedek M, Reszelewski R, Żołnowski M and Poppe B (2022) Robotic observation pipeline for small bodies in the solar system based on open-source software and commercially available telescope hardware. Front. Astron. Space Sci. 9:895732. doi: 10.3389/fspas.2022.895732
