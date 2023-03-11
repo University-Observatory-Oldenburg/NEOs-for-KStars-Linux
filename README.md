@@ -1,6 +1,6 @@
 # NEOs-for-KStars-Linux
 Import Scripts to use current NEO and other Minor Planet data (from MPC, Confirmation Page, ESA, etc.) in KStars for Linux Systems.
-Robotic observation pipeline described by (Hoffmann et al., 2022): https://doi.org/10.3389/fspas.2022.895732
+Robotic observation pipeline described by (**Hoffmann et al., 2022**): https://doi.org/10.3389/fspas.2022.895732
 
 ## Short Description
 The script imports the current NEOs on the ESA Priority list, the MPC NEA Observation Aid, the MPC Confirmation Page and some own additional objects (e.g. from a input prompt). It checks all objects for observability in the following night (magnitude, altitude, uncertainty, etc.). The final list of observable objets is put into KStars (asteroid file) and the Wishlist in order to quickly import the objects into the Scheduler. It is necessary to run this script before starting KStars. An Internet connection is also needed.
@@ -30,3 +30,5 @@ TBD
 - Automatic Schedule Maker
 - Input Prompt for Parameters
 
+## References
+Hoffmann T, Gehlen M, Plaggenborg T, Drolshagen G, Ott T, Kunz J, Santana-Ros T, Gedek M, Reszelewski R, Żołnowski M and Poppe B (2022) Robotic observation pipeline for small bodies in the solar system based on open-source software and commercially available telescope hardware. Front. Astron. Space Sci. 9:895732. doi: 10.3389/fspas.2022.895732
