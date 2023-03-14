@@ -29,6 +29,7 @@ The script imports the current NEOs on the ESA Priority list, the MPC NEA Observ
 
 ## Description
 TBD
+- Release v1.1 was used to obtain the results for the original research article by Hoffmann et al. (2022), which can be accessed here: [doi.org/10.3389/fspas.2022.895732](https://doi.org/10.3389/fspas.2022.895732). The details of the software are further described in our paper.
 
 ## Further Developments (TBD)
 - Automatic Schedule Maker
