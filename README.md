@@ -16,7 +16,7 @@ The script imports the current NEOs on the ESA Priority list, the MPC NEA Observ
 - Save all code files into one folder
 - Adapt the parameters and directories in:
   - KStars_startup_script.sh
-  - Input_objects.py
+  - Input_parameters.py
   - NEO_KStars.py
   - Pre_Capture_NEO.py
 - Make all scripts executable ("chmode +x *Script*")
