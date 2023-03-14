@@ -6,11 +6,12 @@ V0.3: 19.01.2022 TH
 V0.4: 26.01.2022 TH
 V0.5: 08.02.2022 TH
 V1.0: 09.03.2023 TH
+V1.1: 13.03.2023 TH
 
 @author: Tobias Hoffmann
 tobias.hoffmann3[at]uol.de
 
-**NEO Import Script for KStars (Linux) V1**
+**NEO Import Script for KStars (Linux) V1.1**
 
 Description:
     The script imports the current NEOs on the ESA Priority list, the MPC NEA Observation Aid, the MPC Confirmation Page and some own additional objects from a input prompt.
@@ -28,26 +29,27 @@ import os
 import math
 
 import NEO_toolbox as NEO
+from Input_parameters import load_parameters
+
+dire = os.path.dirname(os.path.realpath(__file__))
+params = load_parameters(dire,"parameters.json")
 
 # Parameters
-p_mag_max = 19.5 # Maximal Observable Magnitude / V mag
-p_mag_min = 14.0 # Minimal Magnitude / V mag
-p_alt_min = 30.0 # Minimal Altitude for observation = Virtual Horizon / deg
-p_time_min = 2.0 # Minimum Time for an object to be over the horizon / h
-p_alt_sun = -12.0 # Maximum Altitude of Sun for observation (-12.0 for nautical darkness) / deg
-p_v_min = 0.0 # Minimal Sky velocity of object / arcsec/min
-p_v_max = 100.0 # Maximal Sky velocity of object / arcsec/min
-p_unc_min = 0.1 # Minimum orbital uncertainty (1-sigma) / arcsec
-p_unc_max = 1800 # Maximal orbital uncertainty (1-sigma) / arcsec
-dir_kstars = "/home/stellarmate/.local/share/kstars/" # Directory for KStars instllation
-dir_data = "/home/stellarmate/Robotic/KStars_NEOs/" # Directory for Saving data and addObj file
-
-# Location
-loc_mpccode="G01" # MPC Code of observatory, if not available put ""
-loc_lat=53.152847 # Latitude of observatory / deg N
-loc_long=8.165280 # Longitude of observatory / deg E
-loc_elev=54 # Elevation of observatory / m
-
+dir_kstars = params['Directory of KStars']
+dir_data = params['Directory of Data/Code']
+loc_mpccode = params['MPC Code']
+loc_lat = float(params['Latitude [deg]'])
+loc_long = float(params['Longitude [deg]'])
+loc_elev = float(params['Elevation [m]'])
+p_mag_max = float(params['Maximum Visual Magnitude [mag]'])
+p_mag_min = float(params['Minimum Visual Magnitude [mag]'])
+p_alt_min = float(params['Horizon Altitude [deg]'])
+p_time_min = float(params['Minimum Time above Horizon [h]'])
+p_alt_sun = float(params['Horizon of Sun [deg]'])
+p_v_min = float(params['Minimum Velocity of NEO [arcsec/min]'])
+p_v_max = float(params['Maximum Velocity of NEO [arcsec/min]'])
+p_unc_min = float(params['Minimum Orbital Uncertainty [arcsec]'])
+p_unc_max = float(params['Maximum Orbital Uncertainty [arcsec]'])
 
 #%%
 p_alt_min=p_alt_min/180*math.pi
@@ -70,8 +72,7 @@ namelist_NEAObs=NEO.get_objects("mpc_neaobs",dir_data,t,loc_mpccode,p_mag_max,p_
 namelist_NEOCP=NEO.get_objects("mpc_neocp",dir_data,t,loc_mpccode,p_mag_max,p_mag_min,p_mag_max,p_v_min,p_v_max,p_unc_min,p_unc_max)
 namelist_addobj=NEO.get_addobj("addObjects",dir_data)
 namelist=namelist_ESAPL+namelist_NEAObs+namelist_addobj
-
-        
+     
 #%%
 #Getting mpc1line data
 data_list=NEO.get_mpcdata(namelist,False,"mpc1line",t,loc_mpccode,loc_lat,loc_long)

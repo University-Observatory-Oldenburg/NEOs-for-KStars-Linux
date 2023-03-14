@@ -5,7 +5,7 @@ V1: 09.03.2023 TH
 @author: Tobias Hoffmann
 tobias.hoffmann3[at]uol.de
 
-**Toolbox for functions for NEO Import for KStars (Linux) V1**
+**Toolbox for functions for NEO Import for KStars (Linux) V1.1**
 
 Description:
     ...  
@@ -13,7 +13,7 @@ Ideas:
     ...
 """
 import requests as req
-import datetime as dt
+import os
 import ephem
 import math
 import json
@@ -141,9 +141,11 @@ def mpc1line_to_kstars(dataline,i):
     return data
 
 def remove_empty(mylist):
+    result=[]
     for entry in mylist:
-        if entry == '':
-            mylist.remove(entry)
+        if not entry.strip() == '':
+            result.append(entry)
+    return result
             
 def get_objects(loc,dir_data,t,mpccode,mag_max,m_min,m_max,v_min,v_max,unc_min,unc_max):
     namelist=[]
@@ -163,7 +165,7 @@ def get_objects(loc,dir_data,t,mpccode,mag_max,m_min,m_max,v_min,v_max,unc_min,u
         word="name=\"Obj\" VALUE=\""
         end=None
     
-    f = open(dir_data+loc+".txt", "w")
+    f = open(os.path.join(dir_data,loc+".txt"), "w")
     resp = (req.get(link,params=payload)).text
     f.write(resp)
     f.close()
@@ -185,7 +187,7 @@ def get_objects(loc,dir_data,t,mpccode,mag_max,m_min,m_max,v_min,v_max,unc_min,u
 
 def get_addobj(name,dir_data):
     namelist = []
-    f = open(dir_data+name+".txt","r")
+    f = open(os.path.join(dir_data,name+".txt"),"r")
     addobj = f.readlines()
     f.close()
     for obj in addobj:
@@ -216,7 +218,7 @@ def get_mpcdata(namelist,unconfirmed,form,t,mpccode,lat,long):
         resp_data = req.get("https://cgi.minorplanetcenter.net/cgi-bin/mpeph2.cgi", params=payload)
         data_list=((resp_data.text).split("\n"))
         if form=="xephem": data_list=data_list[1::2]
-    remove_empty(data_list)
+    data_list=remove_empty(data_list)
     return data_list 
 
 def remove_unobservable(data_list,iscp,observer,hor,sun_hor,min_time):
@@ -257,7 +259,7 @@ def remove_unobservable(data_list,iscp,observer,hor,sun_hor,min_time):
 
 def edit_kstars(dir_kstars,name,out,objects):
     numobj=len(objects)+len(objects)
-    h=open(dir_kstars+name,'r')
+    h=open(os.path.join(dir_kstars,name),'r')
     kstars_text=h.read()
     h.close()
     splitlist=["800000","800001","800002","800003","\"count\":"]
@@ -270,10 +272,10 @@ def edit_kstars(dir_kstars,name,out,objects):
                 count=((text[1].split(splitlist[-1]))[1].split("}"))[0]
             count_new=int(count)+numobj
             kstars_text_new=text[0]+out+"],\"count\":"+str(count_new)+"}"
-            g=open(dir_kstars+"asteroids.dat","w") 
+            g=open(os.path.join(dir_kstars,"asteroids.dat"),"w") 
             g.write(kstars_text_new)
             g.close()
-            wl = open(dir_kstars+"wishlist.obslist", "w") 
+            wl = open(os.path.join(dir_kstars,"wishlist.obslist"), "w") 
             wl.write("\n".join(str(x) for [x,y,z] in objects));
             wl.close();
             break
@@ -289,7 +291,7 @@ def save_coordinates(dir_data,objectlist,datalist,observer):
         dec = (asteroid.dec)*180/math.pi
         (objectlist[i]).append(ra)
         (objectlist[i]).append(dec)
-    write_list(objectlist,dir_data+"objectslist_coordinates.json")
+    write_list(objectlist,os.path.join(dir_data,"objectslist_coordinates.json"))
     
 def current_coordinate(data,observer):
     data=mpc1line_to_xephem(data)
