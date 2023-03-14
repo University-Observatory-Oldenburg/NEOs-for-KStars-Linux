@@ -8,6 +8,7 @@ The script imports the current NEOs on the ESA Priority list, the MPC NEA Observ
 ## Requirements
 - Internet connection during whole observation process
 - Python3
+- NTP service for time synchronization (e.g. ntpd)
 - Python Packages: datetime, ephem, os, math, requests, json, sys, subprocess, astropy, tkinter
 - INDI Libary (Version 1.9.5 tested)
 - KStars (Version 3.5.8 tested)
