@@ -21,15 +21,16 @@ The script imports the current NEOs on the ESA Priority list, the MPC NEA Observ
   - Pre_Capture_NEO.py
 - Make all scripts executable ("chmod +x *Script.xx*")
 - Start KStars_startup_script.sh in order to run the codes in the corresponding order
+- A prompt window should open. Insert your parameters for your observatory.
+- Also a second prompt window opens. Here put in additional objects you like to capture.
 - After script is completed, KStars should be started automatically. You can use the whishlist or the search function in KStars to use the objects
-- IMPORTANT: Use the Pre_Capture_NEO.py script before every Capture as Pre-Capture script in Ekos. The coordinates of the object will be updated and the mount is corrected. The dome needs to be slewed again after that procedure. This will correct for the movement of the object according to latest data from MPC, which is not implemented in KStars.
+- **IMPORTANT: Use the Pre_Capture_NEO.py script before every Capture as Pre-Capture script in Ekos. The coordinates of the object will be updated and the mount is corrected. The dome needs to be slewed again after that procedure. This will correct for the movement of the object according to latest data from MPC, which is not implemented in KStars.**
 
 ## Description
 TBD
 
 ## Further Developments (TBD)
 - Automatic Schedule Maker
-- Input Prompt for Parameters
 
 ## References
 - Hoffmann T, Gehlen M, Plaggenborg T, Drolshagen G, Ott T, Kunz J, Santana-Ros T, Gedek M, Reszelewski R, Żołnowski M and Poppe B (2022) Robotic observation pipeline for small bodies in the solar system based on open-source software and commercially available telescope hardware. Front. Astron. Space Sci. 9:895732. doi: [10.3389/fspas.2022.895732](https://doi.org/10.3389/fspas.2022.895732)
