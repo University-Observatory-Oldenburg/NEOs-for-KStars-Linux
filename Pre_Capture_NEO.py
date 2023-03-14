@@ -15,20 +15,24 @@ Ideas:
 """
 import sys
 import datetime as dt
+import base64
 import math
 import ephem
+import os
 
 import NEO_toolbox as NEO
+from Input_parameters import load_parameters
 
-dir_data = "/home/stellarmate/Robotic/KStars_NEOs/"
-mount = "LX200 10micron"
-dome = "Dome Simulator"
+dire = os.path.dirname(os.path.realpath(__file__))
+params = load_parameters(dire,"parameters.json")
 
-# Location
-loc_mpccode="G01" # MPC Code of observatory, if not available put ""
-loc_lat=53.152847 # Latitude of observatory / deg N
-loc_long=8.165280 # Longitude of observatory / deg E
-loc_elev=54 # Elevation of observatory / m
+dir_data = params['Directory of Data/Code']
+mount = params["Mount"]
+dome = params["Dome"]
+loc_mpccode = params['MPC Code']
+loc_lat = float(params['Latitude [deg]'])
+loc_long = float(params['Longitude [deg]'])
+loc_elev = float(params['Elevation [m]'])
     
 #%%
 t = dt.datetime.utcnow()
@@ -57,3 +61,5 @@ if out_parked[0]=="Off":
     data=NEO.get_mpcdata([neo[0]],neo[1],"mpc1line",t,loc_mpccode,loc_lat,loc_long)
     [mpc_ra,mpc_dec]=NEO.current_coordinate(data[0],observer)
     NEO.mount_do(mount,"move",[mpc_ra,mpc_dec])
+
+exit(0)
